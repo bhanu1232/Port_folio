@@ -44,7 +44,7 @@ const classes = computed(() => [
   }
 
   &-accent {
-    background-color: var(--color-accent-400, var(--color-orange-400));
+    background-color: var(--color-accent-400, #f43f5e);
     color: var(--color-accent-text-400, var(--color-white-400));
     --icon-color: var(--color-accent-text-400, var(--color-white-400));
 

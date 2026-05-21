@@ -24,7 +24,7 @@ const ariaLabels = {
 const isMounted = ref(false);
 
 const barStyle = ref({ transform: "" });
-const ITEM_WIDTH = 110;
+const ITEM_WIDTH = 140;
 
 const { isDarkTheme, hasScrolledIntoView } = useHeaderTheme();
 
@@ -97,12 +97,8 @@ onMounted(() => {
 .header-home {
   position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   z-index: var(--z-index-header-home);
-  height: var(--height-header);
-  align-items: center;
-  justify-content: center;
   display: none;
   opacity: 0;
   transition:
@@ -110,7 +106,7 @@ onMounted(() => {
     transform var(--transition-route-duration) var(--transition-route-ease);
 
   &-isProjectPage {
-    transform: translateX(-50%) translateY(-100%);
+    transform: translateY(-100%);
   }
 
   &-mounted {
@@ -124,30 +120,39 @@ onMounted(() => {
   &-links {
     position: relative;
     display: flex;
-    padding: 3px;
-    background-color: var(--color-beige-500);
-    border-radius: 100px;
+    padding: 6px;
+    height: 56px;
+    align-items: center;
+    background-color: rgba(116, 91, 171, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-left: none;
+    border-radius: 0 0 40px 0;
     color: var(--color-text-400);
     transition:
       color 0.15s ease-in-out,
       background-color 0.15s ease-in-out,
-      box-shadow 0.15s ease-in-out;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      box-shadow 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 
     &-dark {
-      background-color: var(--color-dark-blue-500);
+      background-color: rgba(29, 15, 61, 0.6);
       color: var(--color-white-400);
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(0, 198, 255, 0.15);
     }
   }
 
   /* Custom sliding pill indicator */
   &-bar {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    height: calc(100% - 6px);
-    width: 110px;
+    top: 6px;
+    left: 6px;
+    height: calc(100% - 12px);
+    width: 140px;
     background: var(--color-orange-400);
     border-radius: 100px;
     transition:
@@ -160,7 +165,8 @@ onMounted(() => {
     box-shadow: 0 0 0 0 transparent;
 
     &-dark {
-      background-color: var(--color-cyan-500);
+      background-color: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.3);
     }
 
     &-active {
@@ -168,7 +174,7 @@ onMounted(() => {
       box-shadow: 0 2px 10px rgba(255, 140, 60, 0.35);
 
       &.header-home-bar-dark {
-        box-shadow: 0 2px 10px rgba(0, 200, 220, 0.35);
+        box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
       }
     }
   }
@@ -181,13 +187,21 @@ onMounted(() => {
     border: none;
     background: none;
     transition: color 0.15s ease-in-out;
-    font-size: 12px;
-    width: 110px;
+    font-size: 15px;
+    width: 140px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: nowrap;
     text-transform: uppercase;
 
     &-active {
       color: var(--color-white-400);
+
+      .header-home-links-dark & {
+        color: #f43f5e;
+      }
     }
   }
 }

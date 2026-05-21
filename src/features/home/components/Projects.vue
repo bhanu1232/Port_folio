@@ -35,7 +35,6 @@ onMounted(async () => {
     <div class="grid">
       <div class="projects-cards">
         <PreviewCard v-for="preview in loadedPreviews" :key="preview.title" :preview="preview" />
-
       </div>
     </div>
   </div>
@@ -52,7 +51,7 @@ onMounted(async () => {
   gap: var(--space-xl);
   padding-left: var(--space-outer);
   padding-right: var(--space-outer);
-  background-color: var(--color-beige-400);
+  background-color: var(--color-background-400);
   min-height: calc(var(--lvh) * 100 + var(--radius-xxl));
   padding-top: 96px;
   padding-bottom: 96px;
@@ -85,6 +84,8 @@ onMounted(async () => {
       letter-spacing: 0.02em;
       font-size: var(--font-size-title-md);
       line-height: 1;
+      color: var(--color-white-400);
+      text-shadow: var(--glow-primary);
 
       @include mixins.mq("sm") {
         font-size: var(--font-size-title-lg);
@@ -127,16 +128,16 @@ onMounted(async () => {
       top: 0;
       left: 0;
       transform: translateY(-100%);
-      color: var(--color-beige-400);
-      --icon-color: var(--color-beige-400);
+      color: var(--color-background-400);
+      --icon-color: var(--color-background-400);
     }
 
     &-end {
       position: absolute;
       bottom: 0;
       left: 0;
-      color: var(--color-beige-600);
-      --icon-color: var(--color-beige-600);
+      color: var(--color-dark-blue-600);
+      --icon-color: var(--color-dark-blue-600);
     }
   }
 
@@ -145,20 +146,28 @@ onMounted(async () => {
     flex: 1;
     grid-column: 1 / span 12;
     display: grid;
-    gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-xl);
+    grid-template-columns: 1fr;
 
     @include mixins.mq("md") {
       grid-column: 1 / span 12;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include mixins.mq("lg") {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      grid-column: 3 / span 8;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column: 2 / span 10;
     }
 
     @include mixins.mq("xl") {
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
+      grid-column: 2 / span 10;
+    }
+
+    & > :nth-child(5) {
+      @include mixins.mq("lg") {
+        grid-column: span 2;
+      }
     }
   }
 }

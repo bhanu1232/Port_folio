@@ -1,4 +1,4 @@
-import { MeshBasicMaterial, ShaderMaterial } from "three";
+import { MeshBasicMaterial, ShaderMaterial, Color } from "three";
 import { resources } from "../../utils/resources";
 import shadowVertexShader from "../shaders/shadow-catcher/vertex.glsl";
 import shadowFragmentShader from "../shaders/shadow-catcher/fragment.glsl";
@@ -14,7 +14,10 @@ export const getRoomMaterial = (): Material => {
   const texture = resources.items["room-texture"];
   texture.flipY = false;
 
-  roomMaterial = new MeshBasicMaterial({ map: texture });
+  roomMaterial = new MeshBasicMaterial({ 
+    map: texture,
+    color: new Color(0xd7c4ff) // Soft ethereal purple tint
+  });
 
   return roomMaterial;
 };
@@ -24,7 +27,10 @@ export const getContactMaterial = (): Material => {
   const texture = resources.items["contact-texture"];
   texture.flipY = false;
 
-  contactMaterial = new MeshBasicMaterial({ map: texture });
+  contactMaterial = new MeshBasicMaterial({ 
+    map: texture,
+    color: new Color(0xcffffd) // Glowing cyan tint
+  });
 
   return contactMaterial;
 };

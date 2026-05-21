@@ -67,6 +67,8 @@ onUnmounted(() => {
     letter-spacing: 0.02em;
     font-size: var(--font-size-title-lg);
     line-height: 1.05;
+    color: var(--color-white-400);
+    text-shadow: 0 0 20px rgba(0, 198, 255, 0.4), 0 0 40px rgba(148, 0, 211, 0.3);
 
     @include mixins.mq("sm") {
       font-size: var(--font-size-title-xl);

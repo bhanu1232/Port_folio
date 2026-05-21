@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Link from "../../../components/Link.vue";
-import Notch from "../../../components/Notch.vue";
 import ArrowRightLong from "../../../components/icons/ArrowRightLong.vue";
 import gsap from "gsap";
 import { onMounted, onUnmounted, ref } from "vue";
@@ -61,21 +60,15 @@ onUnmounted(() => {
           <img :src="props.preview.thumbnail" :alt="props.preview.title" class="preview-card-image" ref="imageRef" />
         </div>
       </div>
-      <div class="preview-card-overlay">
-        <div class="preview-card-edge">
-          <ButtonRound class="preview-card-button" variant="accent" renderAs="div">
-            <ArrowRightLong class="preview-card-button-arrow" />
-          </ButtonRound>
-        </div>
-        <Notch class="preview-card-notch preview-card-notch-left" />
-        <Notch class="preview-card-notch preview-card-notch-right" />
-      </div>
     </div>
     <div class="preview-card-content">
       <div class="preview-card-copys">
         <h3 class="preview-card-title">{{ props.preview.title }}</h3>
         <p class="preview-card-description">{{ props.preview.description }}</p>
       </div>
+      <ButtonRound class="preview-card-button" variant="accent" renderAs="div">
+        <ArrowRightLong class="preview-card-button-arrow" />
+      </ButtonRound>
     </div>
   </Link>
 
@@ -104,76 +97,42 @@ onUnmounted(() => {
   position: relative;
   border-radius: var(--radius-xl);
   z-index: var(--z-index-layout);
+  background: #1a1625;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s var(--ease-power2-out);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   &::after {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    width: calc(100% + 16px);
-    height: calc(100% + 16px);
-    background-color: var(--color-grayscale-400);
-    border-radius: var(--radius-xl);
-    z-index: -1;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.1s ease-in-out;
+    display: none;
   }
 
   @include mixins.hover {
     &:hover {
       --hover: 1;
-
-      &::after {
-        opacity: 1;
-      }
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.1);
     }
   }
 
   &-content {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    padding-top: var(--space-xs);
-  }
-
-  &-overlay {
-    @include mixins.hover {
-      display: none;
-    }
-  }
-
-  &-notch {
-    position: absolute;
-    color: var(--color-beige-400);
-    --icon-color: var(--color-beige-400);
-    transform: scale(-1) rotate(90deg);
-    height: var(--radius-lg);
-
-    &-left {
-      bottom: 0;
-      right: 50px;
-    }
-
-    &-right {
-      bottom: 50px;
-      right: 0;
-    }
-  }
-
-  &-edge {
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    background-color: var(--color-beige-400);
-    padding-left: 6px;
-    padding-top: 6px;
-    border-radius: 32px 0 0 0;
-    padding-right: 1px;
-    padding-bottom: 1px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: var(--space-xl);
+    flex: 1;
   }
 
   &-button {
+    flex-shrink: 0;
+    margin-left: var(--space-md);
+    background-color: #f43f5e !important;
+    border-color: #f43f5e !important;
+    color: white !important;
+
     &-arrow {
       transition: transform 0.1s ease-in-out;
       width: 100%;
@@ -193,9 +152,9 @@ onUnmounted(() => {
     }
 
     &-wrapper {
-      border-radius: var(--radius-lg);
       overflow: hidden;
-      background-color: var(--color-beige-500);
+      background-color: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
   }
 
@@ -203,14 +162,21 @@ onUnmounted(() => {
     position: relative;
     width: 100%;
     aspect-ratio: 16/9;
+    overflow: hidden;
 
     &-empty {
-      border: 4px dashed var(--color-grayscale-500);
+      border: 2px dashed rgba(0, 198, 255, 0.4);
       border-radius: var(--radius-lg);
-      background-color: var(--color-grayscale-400);
+      background-color: rgba(29, 15, 61, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: var(--color-cyan-400);
+        box-shadow: inset var(--glow-primary);
+      }
 
       &-icon {
         width: var(--icon-size-lg);
@@ -229,7 +195,8 @@ onUnmounted(() => {
   &-title {
     font-size: var(--font-size-title-xs);
     font-weight: 700;
-    color: var(--color-text-400);
+    color: var(--color-white-400);
+    text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
   }
 
   &-description {

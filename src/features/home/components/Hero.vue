@@ -77,6 +77,7 @@ const scrollToProjects = () => {
       position: relative;
       left: 50%;
       transform: translateX(-50%);
+      animation: floatEthereal 6s ease-in-out infinite alternate;
 
       @include mixins.landscape {
         left: 0;
@@ -105,12 +106,13 @@ const scrollToProjects = () => {
     font-weight: 900;
     letter-spacing: 0.02em;
     font-size: var(--font-size-title-lg);
-    /* Subtle gradient shimmer on the name */
+    color: var(--color-white-400);
+    text-shadow: 0 0 20px rgba(0, 198, 255, 0.6), 0 0 40px rgba(148, 0, 211, 0.4);
     background: linear-gradient(
       135deg,
-      var(--color-text-400) 0%,
-      var(--color-text-300) 40%,
-      var(--color-text-400) 100%
+      var(--color-white-400) 0%,
+      var(--color-cyan-400) 50%,
+      var(--color-white-400) 100%
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -173,6 +175,26 @@ const scrollToProjects = () => {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes floatEthereal {
+  0% {
+    transform: translateX(-50%) translateY(0px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+@include mixins.landscape {
+  @keyframes floatEthereal {
+    0% {
+      transform: translateX(0) translateY(0px);
+    }
+    100% {
+      transform: translateX(0) translateY(-15px);
+    }
   }
 }
 </style>
