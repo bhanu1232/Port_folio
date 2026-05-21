@@ -123,10 +123,11 @@ onMounted(() => {
     padding: 6px;
     height: 56px;
     align-items: center;
-    background-color: rgba(116, 91, 171, 0.5);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(20, 15, 35, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     border-top: none;
     border-left: none;
     border-radius: 0 0 40px 0;
@@ -136,13 +137,14 @@ onMounted(() => {
       background-color 0.15s ease-in-out,
       box-shadow 0.15s ease-in-out,
       border-color 0.15s ease-in-out;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3), inset 1px 1px 0px rgba(255, 255, 255, 0.05);
 
     &-dark {
-      background-color: rgba(29, 15, 61, 0.6);
+      background: rgba(10, 5, 20, 0.65);
       color: var(--color-white-400);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      border-color: rgba(0, 198, 255, 0.15);
+      border-right: 1px solid rgba(0, 198, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 198, 255, 0.2);
+      box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.6), inset 1px 1px 0px rgba(0, 198, 255, 0.1);
     }
   }
 
@@ -153,7 +155,7 @@ onMounted(() => {
     left: 6px;
     height: calc(100% - 12px);
     width: 140px;
-    background: var(--color-orange-400);
+    background: linear-gradient(135deg, #f43f5e 0%, #ff0844 100%);
     border-radius: 100px;
     transition:
       transform 0.32s var(--ease-smooth),
@@ -165,16 +167,16 @@ onMounted(() => {
     box-shadow: 0 0 0 0 transparent;
 
     &-dark {
-      background-color: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.3);
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+      border: none;
     }
 
     &-active {
       opacity: 1;
-      box-shadow: 0 2px 10px rgba(255, 140, 60, 0.35);
+      box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4), inset 1px 1px 1px rgba(255, 255, 255, 0.3);
 
       &.header-home-bar-dark {
-        box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4), inset 1px 1px 1px rgba(255, 255, 255, 0.3);
       }
     }
   }
@@ -198,9 +200,10 @@ onMounted(() => {
 
     &-active {
       color: var(--color-white-400);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
       .header-home-links-dark & {
-        color: #f43f5e;
+        color: var(--color-white-400);
       }
     }
   }

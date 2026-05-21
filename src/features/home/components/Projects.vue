@@ -24,7 +24,6 @@ onMounted(async () => {
 <template>
   <div class="projects">
     <NotchSection class="projects-notch-start" />
-    <NotchSection class="projects-notch-end" />
     <div class="grid">
       <div class="projects-title">
         <Banner class="projects-title-banner" :copy="t('selected')" size="sm" animated />
@@ -130,14 +129,6 @@ onMounted(async () => {
       transform: translateY(-100%);
       color: var(--color-background-400);
       --icon-color: var(--color-background-400);
-    }
-
-    &-end {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      color: var(--color-dark-blue-600);
-      --icon-color: var(--color-dark-blue-600);
     }
   }
 
